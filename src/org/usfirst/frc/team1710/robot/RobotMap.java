@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
 
 public class RobotMap {
-RobotDrive driveTrain;
-Joystick drive, mech;
-Talon hopper, shooter;
+public static RobotDrive driveTrain;
+public static Joystick drive, mech;
+public static Talon hopper, shooter;
 }
