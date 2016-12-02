@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+        Drive.arcadeDrive(RobotMap.drive.getRawAxis(0), RobotMap.drive.getRawAxis(1));
     }
     
     /**
