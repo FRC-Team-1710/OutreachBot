@@ -21,6 +21,7 @@ public class ForwardTime extends Command {
 
     protected void execute() {
     	if (count <= timePublic/20) {
+    			RobotMap.driveTrain.arcadeDrive(powerPublic, timePublic);
     		count++;
     		done = false;
     	}
