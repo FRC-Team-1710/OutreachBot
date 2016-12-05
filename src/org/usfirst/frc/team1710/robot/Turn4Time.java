@@ -27,6 +27,7 @@ public class Turn4Time extends Command {
     	
     	if(count <= timePublic / 20 ){
     		count++;
+    		RobotMap.driveTrain.arcadeDrive(0, powerPublic);
     		done = false; 
     	}
     	else{
