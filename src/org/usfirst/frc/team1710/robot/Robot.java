@@ -71,7 +71,9 @@ public class Robot extends IterativeRobot {
     	double turn, move;
     	turn = RobotMap.drive.getRawAxis(0);
     	move = RobotMap.drive.getRawAxis(1);
-        Drive.arcadeDrive(move*-0.8, turn*-0.8);
+    	if(Math.abs(turn) > 0.25 && Math.abs(move) > 0.25) {
+            Drive.arcadeDrive(move*-0.8, turn*-0.8);
+    	}
     }
     
     /**
