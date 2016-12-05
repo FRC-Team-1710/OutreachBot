@@ -20,6 +20,7 @@ public class Robot extends IterativeRobot {
     final String customAuto = "My Auto";
     String autoSelected;
     SendableChooser chooser;
+    double turn, move;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -32,6 +33,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto choices", chooser);
         RobotMap.driveTrain = new RobotDrive(3, 2, 4, 5);
         RobotMap.drive = new Joystick(0);
+        Drive.arcadeDrive(0, 0);
+        turn = 0;
+        move = 0;
     }
     
 	/**
@@ -68,19 +72,19 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	double turn, move;
-    	if(Math.abs(RobotMap.drive.getRawAxis(0)) > 0.25) {
-        	turn = RobotMap.drive.getRawAxis(0);
+    	if(Math.abs(RobotMap.drive.getRawAxis(4)) > 0.65) {
+        	turn = RobotMap.drive.getRawAxis(4);
     	} else {
         	turn = 0;
     	}
     	
-    	if(Math.abs(RobotMap.drive.getRawAxis(1)) > 0.25) {
+    	if(Math.abs(RobotMap.drive.getRawAxis(1)) > 0.65) {
         	move = RobotMap.drive.getRawAxis(1);
     	} else {
     		move = 0;
     	}
-        Drive.arcadeDrive(move*-0.8, turn*-0.8);
+    	
+        Drive.arcadeDrive(move, turn);
     }
     
     /**
