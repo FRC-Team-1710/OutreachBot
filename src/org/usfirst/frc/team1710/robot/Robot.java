@@ -2,6 +2,7 @@
 package org.usfirst.frc.team1710.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -29,7 +30,8 @@ public class Robot extends IterativeRobot {
         chooser.addDefault("Default Auto", defaultAuto);
         chooser.addObject("My Auto", customAuto);
         SmartDashboard.putData("Auto choices", chooser);
-        RobotMap.driveTrain = new RobotDrive(3, 0, 2, 1);
+        RobotMap.driveTrain = new RobotDrive(3, 2, 4, 5);
+        RobotMap.drive = new Joystick(0);
     }
     
 	/**
@@ -66,7 +68,10 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        
+    	double turn, move;
+    	turn = RobotMap.drive.getRawAxis(0);
+    	move = RobotMap.drive.getRawAxis(1);
+        Drive.arcadeDrive(move*-0.8, turn*-0.8);
     }
     
     /**
