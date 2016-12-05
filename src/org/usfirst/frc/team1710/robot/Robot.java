@@ -69,11 +69,18 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	double turn, move;
-    	turn = RobotMap.drive.getRawAxis(0);
-    	move = RobotMap.drive.getRawAxis(1);
-    	if(Math.abs(turn) > 0.25 && Math.abs(move) > 0.25) {
-            Drive.arcadeDrive(move*-0.8, turn*-0.8);
+    	if(Math.abs(RobotMap.drive.getRawAxis(0)) > 0.25) {
+        	turn = RobotMap.drive.getRawAxis(0);
+    	} else {
+        	turn = 0;
     	}
+    	
+    	if(Math.abs(RobotMap.drive.getRawAxis(1)) > 0.25) {
+        	move = RobotMap.drive.getRawAxis(1);
+    	} else {
+    		move = 0;
+    	}
+        Drive.arcadeDrive(move*-0.8, turn*-0.8);
     }
     
     /**
