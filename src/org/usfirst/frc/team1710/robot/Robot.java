@@ -10,19 +10,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
-    final String defaultAuto = "Default";
-    final String lukeAuto = "Luke Auto";
-    final String pennAuto = "Penn Auto";
-    String autoSelected;
     SendableChooser chooser;
     double turn, move;
     Command autonomousCommand;
 
     public void robotInit() {
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", defaultAuto);
-        chooser.addObject("Luke Auto", lukeAuto);
-        chooser.addObject("Penn Auto", pennAuto);
+        chooser.addObject("Luke Auto", new LukesAuto());
+        chooser.addObject("Penn Auto", new PennsAuto());
         SmartDashboard.putData("Auto choices", chooser);
         RobotMap.driveTrain = new RobotDrive(3, 2, 4, 5);
         RobotMap.drive = new Joystick(0);
@@ -33,15 +28,8 @@ public class Robot extends IterativeRobot {
     
 
     public void autonomousInit() {
-    	autoSelected = (String) chooser.getSelected();
-		System.out.println("Auto selected: " + autoSelected);
-		if(autoSelected == lukeAuto) {
-			autonomousCommand = new LukesAuto();
-		} else if (autoSelected == pennAuto) {
-			autonomousCommand = new PennsAuto();
-		}
-		
-        if (autonomousCommand != null) autonomousCommand.start();
+    	autonomousCommand = (Command) chooser.getSelected();
+    	autonomousCommand.start();
     }
 
 
