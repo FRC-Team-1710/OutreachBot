@@ -40,6 +40,8 @@ public class Robot extends IterativeRobot {
 		} else if (autoSelected == pennAuto) {
 			autonomousCommand = new PennsAuto();
 		}
+		
+        if (autonomousCommand != null) autonomousCommand.start();
     }
 
 
