@@ -72,18 +72,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-    	if(Math.abs(RobotMap.drive.getRawAxis(4)) > 0.65) {
-        	turn = RobotMap.drive.getRawAxis(4);
-    	} else {
-        	turn = 0;
-    	}
-    	
-    	if(Math.abs(RobotMap.drive.getRawAxis(1)) > 0.65) {
-        	move = RobotMap.drive.getRawAxis(1);
-    	} else {
-    		move = 0;
-    	}
-    	
+        turn = RobotMap.drive.getRawAxis(4);
+        move = RobotMap.drive.getRawAxis(1);
         Drive.arcadeDrive(move, turn);
     }
     
