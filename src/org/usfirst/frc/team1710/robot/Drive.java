@@ -10,7 +10,7 @@ public class Drive extends Subsystem {
     	RobotMap.driveTrain.arcadeDrive(0,0);
     }
     public static void arcadeDrive(double drive, double turn){
-    	RobotMap.driveTrain.arcadeDrive(drive * -0.75, turn * -0.75);
+    	RobotMap.driveTrain.arcadeDrive(drive * -1, turn * -1);
     }
 }
 
