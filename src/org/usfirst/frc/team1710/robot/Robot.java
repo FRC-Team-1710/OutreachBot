@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
         hopper = RobotMap.drive.getRawAxis(3);
         RobotMap.hopper.set(hopper*-1);
         shooter = RobotMap.drive.getRawAxis(2);
-        RobotMap.shooter.set(shooter*-1);
+        RobotMap.shooter.set(shooter*-.75);
     }
     
 
