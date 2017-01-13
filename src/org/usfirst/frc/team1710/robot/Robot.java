@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
     SendableChooser chooser;
-    double turn, move, shooter, hopper;
+    double turn, move, hopper;
+	boolean shooter;
     boolean speedBoost;
     Command autonomousCommand;
     
@@ -32,9 +33,8 @@ public class Robot extends IterativeRobot {
         move = 0;
         //hopper = 0;
         //shooter = 0;
-        CameraServer camera = CameraServer.getInstance();
-        camera.setQuality(30);
-        camera.startAutomaticCapture("cam0");
+        //CameraServer camera = CameraServer.getInstance();
+        //camera.startAutomaticCapture("cam0");
     }
     
 
@@ -52,11 +52,14 @@ public class Robot extends IterativeRobot {
         turn = RobotMap.drive.getRawAxis(4);
         move = RobotMap.drive.getRawAxis(1);
         speedBoost = RobotMap.drive.getRawButton(5);
+        
         Drive.arcadeDrive(move, turn, speedBoost);
+        
         hopper = RobotMap.drive.getRawAxis(3);
-        RobotMap.hopper.set(hopper*-1);
-        shooter = RobotMap.drive.getRawAxis(2);
-        RobotMap.shooter.set(shooter*-.75);
+        ShootingSystem.runHopper(hopper);
+        
+        shooter = RobotMap.drive.getRawButton(2);
+        ShootingSystem.runShooter(shooter);
         
     }
     
