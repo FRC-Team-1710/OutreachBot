@@ -60,7 +60,6 @@ public class Robot extends IterativeRobot {
         
         shooter = RobotMap.drive.getRawButton(2);
         ShootingSystem.runShooter(shooter);
-        
     }
     
 
