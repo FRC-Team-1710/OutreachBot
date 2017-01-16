@@ -14,14 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
     SendableChooser chooser;
-<<<<<<< HEAD
     double turn, move, shooter, hopper, shooterMultiplier;
     boolean speedBoost, shoot;
-=======
-    double turn, move, hopper;
-	boolean shooter;
-    boolean speedBoost;
->>>>>>> origin/master
     Command autonomousCommand;
     
     NetworkTable table;
@@ -38,8 +32,8 @@ public class Robot extends IterativeRobot {
         move = 0;
         //hopper = 0;
         //shooter = 0;
-        //CameraServer camera = CameraServer.getInstance();
-        //camera.startAutomaticCapture("cam0");
+        CameraServer camera = CameraServer.getInstance();
+        camera.startAutomaticCapture("cam0");
     }
     
 
@@ -56,31 +50,20 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         turn = RobotMap.drive.getRawAxis(2);
         move = RobotMap.drive.getRawAxis(1);
-<<<<<<< HEAD
         shooterMultiplier = RobotMap.drive.getRawAxis(3);
         
         shoot = RobotMap.drive.getRawButton(0);
         speedBoost = RobotMap.drive.getRawButton(1);
-=======
-        speedBoost = RobotMap.drive.getRawButton(5);
->>>>>>> origin/master
         
         Drive.arcadeDrive(move, turn, speedBoost);
         
-        hopper = RobotMap.drive.getRawAxis(3);
-<<<<<<< HEAD
-        RobotMap.hopper.set(hopper*-1);
+        //hopper = RobotMap.drive.getRawAxis(3);
+        //RobotMap.hopper.set(hopper*-1);
         shooter = RobotMap.drive.getRawAxis(2);
         
         if(shoot) {
         	RobotMap.shooter.set(shooter*shooterMultiplier);
         }
-=======
-        ShootingSystem.runHopper(hopper);
-        
-        shooter = RobotMap.drive.getRawButton(2);
-        ShootingSystem.runShooter(shooter);
->>>>>>> origin/master
     }
     
 
