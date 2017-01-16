@@ -32,8 +32,8 @@ public class Robot extends IterativeRobot {
         move = 0;
         //hopper = 0;
         //shooter = 0;
-        CameraServer camera = CameraServer.getInstance();
-        camera.startAutomaticCapture("cam0");
+        //CameraServer camera = CameraServer.getInstance();
+        //camera.startAutomaticCapture("cam0", 0);
     }
     
 
@@ -52,8 +52,8 @@ public class Robot extends IterativeRobot {
         move = RobotMap.drive.getRawAxis(1);
         shooterMultiplier = RobotMap.drive.getRawAxis(3);
         
-        shoot = RobotMap.drive.getRawButton(0);
-        speedBoost = RobotMap.drive.getRawButton(1);
+        shoot = RobotMap.drive.getRawButton(1);
+        speedBoost = RobotMap.drive.getRawButton(2);
         
         Drive.arcadeDrive(move, turn, speedBoost);
         
@@ -62,7 +62,9 @@ public class Robot extends IterativeRobot {
         shooter = RobotMap.drive.getRawAxis(2);
         
         if(shoot) {
-        	RobotMap.shooter.set(shooter*shooterMultiplier);
+        	RobotMap.shooter.set(-1*shooterMultiplier);
+        } else {
+        	RobotMap.shooter.set(0);
         }
     }
     
