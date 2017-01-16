@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
     SendableChooser chooser;
-    double turn, move, shooter, hopper;
-    boolean speedBoost;
+    double turn, move, shooter, hopper, shooterMultiplier;
+    boolean speedBoost, shoot;
     Command autonomousCommand;
     
     NetworkTable table;
@@ -49,15 +49,21 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopPeriodic() {
-        turn = RobotMap.drive.getRawAxis(4);
+        turn = RobotMap.drive.getRawAxis(2);
         move = RobotMap.drive.getRawAxis(1);
-        speedBoost = RobotMap.drive.getRawButton(5);
+        shooterMultiplier = RobotMap.drive.getRawAxis(3);
+        
+        shoot = RobotMap.drive.getRawButton(0);
+        speedBoost = RobotMap.drive.getRawButton(1);
+        
         Drive.arcadeDrive(move, turn, speedBoost);
         hopper = RobotMap.drive.getRawAxis(3);
         RobotMap.hopper.set(hopper*-1);
         shooter = RobotMap.drive.getRawAxis(2);
-        RobotMap.shooter.set(shooter*-.75);
         
+        if(shoot) {
+        	RobotMap.shooter.set(shooter*shooterMultiplier);
+        }
     }
     
 
