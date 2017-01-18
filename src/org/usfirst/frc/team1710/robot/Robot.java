@@ -2,7 +2,6 @@
 package org.usfirst.frc.team1710.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;

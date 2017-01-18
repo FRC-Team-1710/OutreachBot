@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1710.robot;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.kauailabs.navx.frc.AHRS;
 
 public class Drive extends Subsystem {
 
