@@ -2,6 +2,7 @@
 package org.usfirst.frc.team1710.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -15,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
     SendableChooser chooser;
     double turn, move, shooter, hopper, shooterMultiplier;
-    boolean speedBoost, shoot;
+    boolean speedBoost, shoot, stegActive;
     Command autonomousCommand;
     
     NetworkTable table;
@@ -32,8 +33,8 @@ public class Robot extends IterativeRobot {
         move = 0;
         //hopper = 0;
         //shooter = 0;
-        //CameraServer camera = CameraServer.getInstance();
-        //camera.startAutomaticCapture("cam0", 0);
+        CameraServer camera = CameraServer.getInstance();
+        camera.startAutomaticCapture("cam0", 0);
     }
     
 
@@ -51,21 +52,26 @@ public class Robot extends IterativeRobot {
         turn = RobotMap.drive.getRawAxis(2);
         move = RobotMap.drive.getRawAxis(1);
         shooterMultiplier = RobotMap.drive.getRawAxis(3);
+        stegActive = RobotMap.drive.getRawButton(1);
         
-        shoot = RobotMap.drive.getRawButton(1);
+        //shoot = RobotMap.drive.getRawButton(1);
         speedBoost = RobotMap.drive.getRawButton(2);
         
-        Drive.arcadeDrive(move, turn, speedBoost);
+        if(stegActive) {
+            Drive.stegDrive(move, RobotMap.navx.getYaw(), stegActive);	
+        } else {
+            Drive.arcadeDrive(move, turn, speedBoost);
+        }
         
         //hopper = RobotMap.drive.getRawAxis(3);
         //RobotMap.hopper.set(hopper*-1);
         shooter = RobotMap.drive.getRawAxis(2);
         
-        if(shoot) {
+        /*if(shoot) {
         	RobotMap.shooter.set(-1*shooterMultiplier);
         } else {
         	RobotMap.shooter.set(0);
-        }
+        }*/
     }
     
 
