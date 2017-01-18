@@ -17,7 +17,7 @@ public class Drive extends Subsystem {
     		RobotMap.driveTrain.arcadeDrive(drive * -0.6, turn * -0.6);
     	}
     }
-    
+    //drives the robot straighter than jake stegeman ;)
     public static void stegDrive(double speed, float currentYaw, boolean stegActivated) {
     	if(stegActivated) {
         	if(yawZeroed) {
