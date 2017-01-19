@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1710.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import com.kauailabs.navx.frc.AHRS;
 import com.kauailabs.navx.frc.*;
 
 import edu.wpi.first.wpilibj.RobotDrive;
