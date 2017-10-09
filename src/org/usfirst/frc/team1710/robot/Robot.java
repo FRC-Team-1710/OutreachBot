@@ -26,6 +26,7 @@ public class Robot extends IterativeRobot {
     
     public void robotInit() {
         chooser = new SendableChooser();
+        chooser.addDefault("ez", AutoChallengeGroup);
         SmartDashboard.putData("Auto choices", chooser);
         RobotMap.driveTrain = new RobotDrive(3, 2, 4, 5);
         RobotMap.drive = new Joystick(0);
